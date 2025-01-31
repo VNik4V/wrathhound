@@ -1,9 +1,21 @@
 const db = require('../../config/db');
 const {sql} = require('./friends.model');
 
-const addFriend = (req,res) => {
+const addFriend = async (req,res) => {
     const {id} = req.user;
     const {uid} = req.params;
+    try {
+        const [result] = await db.query(sql.accept,[uid, id]);
+        if(result.affectedRows === 0){
+            const [result1] =await db.query(sql.addfriend, [id, uid]);
+            return res.status(201).json({message: 'Barátkérelem elküldve'});
+        }
+        const [result2] = await db.query(sql.addfriend, [id, uid]);
+        return res.status(201).json({message: 'Barátkérelem elfogadva'});
+    } catch (err) {
+        return res.status(500).json({error: 'Hiba a kapcsolat felvételénél'});
+    }
+    /*
     db.query(sql.accept,[uid, id], (err, result) => {
         if(err){
             return res.status(500).json({error: 'Hiba a kapcsolat felvételénél'});
@@ -23,10 +35,21 @@ const addFriend = (req,res) => {
             return res.status(201).json({message: 'Barátkérelem elfogadva'});
         });      
     });
+    */
 };
 
-const pending = (req,res) => {
+const pending = async (req,res) => {
     const {id} = req.user;
+    try {
+        const [result] = await db.query(sql.pending, [id]);
+        if(result.length === 0){
+            return res.status(200).json({message: 'Nincsenek kérelmeid'});
+        }
+        return res.status(200).json(result);
+    } catch (err) {
+        return res.status(500).json({error: 'Hiba a mátrixban'});
+    }
+    /*
     db.query(sql.pending, [id], (err, result) => {
         if(err){
             return res.status(500).json({error: 'Hiba a mátrixban'});
@@ -36,10 +59,21 @@ const pending = (req,res) => {
         }
         return res.status(200).json(result);
     });
+    */
 };
 
-const allFriends = (req,res) => {
+const allFriends = async (req,res) => {
     const {id} = req.user;
+    try {
+        const [result] = await db.query(sql.friends, [id]);
+        if(result.length === 0){
+            return res.status(200).json({message: 'A barátlista üres'});
+        }
+        return res.status(200).json(result);
+    } catch (err) {
+        return res.status(500).json({error: 'Hiba a mátrixban'});
+    }
+    /*
     db.query(sql.friends, [id], (err, result) => {
         if(err){
             return res.status(500).json({error: 'Hiba a mátrixban'});
@@ -49,11 +83,22 @@ const allFriends = (req,res) => {
         }
         return res.status(200).json(result);
     });
+    */
 };
 
-const removeFriend = (req,res) => {
+const removeFriend = async (req,res) => {
     const {id} = req.user;
     const {uid} = req.params;
+    try {
+        const [result] = await db.query(sql.removefriend, [id, uid, uid, id]);
+        if(result.affectedRows === 0){
+            return res.status(404).json({message: 'A kapcsolat nem található'});
+        }
+        return res.status(200).json({message: 'Kapcsolat törölve'});
+    } catch (err) {
+        return res.status(500).json({error: 'Hiba a kapcsolat törlésénél'});
+    }
+    /*
     db.query(sql.removefriend, [id, uid, uid, id], (err, result) => {
         if(err){
             return res.status(500).json({error: 'Hiba a kapcsolat törlésénél'});
@@ -63,6 +108,7 @@ const removeFriend = (req,res) => {
         }
         return res.status(200).json({message: 'Kapcsolat törölve'});
     });
+    */
 };
 
 

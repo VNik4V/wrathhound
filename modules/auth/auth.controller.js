@@ -18,7 +18,22 @@ const registration = async (req,res) => {
             all_lowercase: true,        
         }]);
         const hashed = await bcrypt.hash(psw,10);
-        
+
+        try {
+            const [result] = await db.query(sql.search, [mail]);
+            if(result.length > 0){
+                return res.status(400).json({error: 'Van már ilyen felhasználó!'})
+            }
+            const [result1] = await db.query(sql.register, [username, mail, hashed])
+            return res.status(201).json({message: "siker", id: result1.insertId});
+
+
+            
+        } catch(err) {
+            return res.status(500).json({error: 'Hiba a mátrixban', details: err});
+        }
+        /*
+
         db.query(sql.search, [mail], (err,result) => {
             if(err){
                 res.status(500).json({error: 'Hiba a mátrixban'});
@@ -33,13 +48,14 @@ const registration = async (req,res) => {
                 return res.status(201).json({message: "siker", id: result1.insertId});
             });
         });
+        */
     }
     catch(error){
         return res.status(400).json({error: error.message});
     }    
 };
 
-const login = (req,res) => {
+const login = async (req,res) => {
     const {email, psw, remember} = req.body;
     try {
         emailValidation(email);
@@ -48,6 +64,40 @@ const login = (req,res) => {
         const mail = validator.normalizeEmail(email, [{
             all_lowercase: true,        
         }]);
+        try {
+            const [result] = await db.query(sql.search, [mail]);
+            if(result.length === 0){
+                return res.status(400).json({error: 'Nincs ilyen emaillel regisztrálva!'})
+            }
+            const user = result[0];
+            const validpsw = await bcrypt.compare(psw, user.psw);
+            if(!validpsw){
+                return res.status(400).json({error: 'Érvénytelen jelszó!'});
+            }
+            const token = jwt.sign({ id: user.uid, role: user.role}, JWT_SECRET, { expiresIn: '1h' });
+            if(remember) {
+                console.log(token);
+                console.log(res.cookie('auth_token', token, {
+                    httpOnly: true,
+                    secure: false,
+                    sameSite: 'none',
+                    maxAge: 1000 * 60 * 60 * 24 * 31 * 12
+                }))
+                res.cookie('auth_token', token, {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                    maxAge: 1000 * 60 * 60 * 24 * 31 * 12
+                });
+            }
+            else{
+                req.session.token = token;
+            } 
+        } catch(err) {
+            return res.status(500).json({error: 'Hiba a mátrixban', details: err});
+        }
+
+        /*
         db.query(sql.search, [mail], async (err,result) => {
             if(err){
                 res.status(500).json({error: 'Hiba a mátrixban'});
@@ -85,7 +135,8 @@ const login = (req,res) => {
                 req.session.token = token;
             }            
             res.status(200).json({ message: 'Sikeres bejelentkezés!', token});
-        });       
+        });
+        */        
     } 
     catch (error) {
         return res.status(400).json({error: error.message});
