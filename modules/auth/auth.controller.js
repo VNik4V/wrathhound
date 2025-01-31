@@ -75,23 +75,19 @@ const login = async (req,res) => {
                 return res.status(400).json({error: 'Érvénytelen jelszó!'});
             }
             const token = jwt.sign({ id: user.uid, role: user.role}, JWT_SECRET, { expiresIn: '1h' });
-            if(remember) {
+            if(remember === true) {
                 console.log(token);
-                console.log(res.cookie('auth_token', token, {
-                    httpOnly: true,
-                    secure: false,
-                    sameSite: 'none',
-                    maxAge: 1000 * 60 * 60 * 24 * 31 * 12
-                }))
                 res.cookie('auth_token', token, {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'none',
                     maxAge: 1000 * 60 * 60 * 24 * 31 * 12
                 });
+                return res.status(200).json({message: "Sikeres bejelentkezés"});
             }
             else{
                 req.session.token = token;
+                return res.status(200).json({message: "Sikeres bejelentkezés"});
             } 
         } catch(err) {
             return res.status(500).json({error: 'Hiba a mátrixban', details: err});
