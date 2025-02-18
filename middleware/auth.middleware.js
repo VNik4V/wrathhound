@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const {JWT_SECRET} = require('../config/config').config;
 
 function authenticateToken(req,res,next) {
-    const token = req.cookies.auth_token || req.session.token;
+    const token = req.cookies.auth_token;
     if(!token){
         return res.status(403);
     }
@@ -16,7 +16,7 @@ function authenticateToken(req,res,next) {
 }
 
 function verifyAdmin(req,res,next) {
-    const token = req.cookies.auth_token || req.session.token;
+    const token = req.cookies.auth_token;
     if(!token){
         return res.status(403).json({message: 'Token nem található'});
     }

@@ -2,15 +2,15 @@ const help  = require('../../utils/helpers');
 
 const sql = {
     newpost: 'INSERT INTO forum (title, uid, post, time) VALUES (?, ?, ?, NOW())',
-    allpost: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid JOIN forum_comments ON forum_comments.post_id = forum.post_id GROUP BY forum_comments.post_id ORDER BY forum.time DESC',
-    onepost: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid JOIN forum_comments ON forum_comments.post_id = forum.post_id WHERE forum.post_id = ? GROUP BY forum_comments.post_id',
+    allpost: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid LEFT JOIN forum_comments ON forum_comments.post_id = forum.post_id GROUP BY forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid ORDER BY forum.time DESC',
+    onepost: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid LEFT JOIN forum_comments ON forum_comments.post_id = forum.post_id WHERE forum.post_id = ? GROUP BY forum_comments.post_id',
     comments: 'SELECT forum_comments.comment_id, forum_comments.post_id, forum_comments.post, forum_comments.time, users.username, users.uid FROM forum_comments JOIN users ON forum_comments.uid = users.uid WHERE forum_comments.post_id = ? ORDER BY forum_comments.time ASC',
     newcomment: 'INSERT INTO forum_comments (post_id, uid, post, time) VALUES (?, ?, ?, NOW());',
     deletepost: 'DELETE FROM forum WHERE post_id = ? AND uid = ?',
     deletecomment: 'DELETE FROM forum_comments WHERE comment_id = ? AND uid = ?',
     editpost: null,
     editcomment: 'UPDATE forum_comments SET post = ?, time = NOW() WHERE comment_id = ? AND uid = ?',
-    search: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid JOIN forum_comments ON forum_comments.post_id = forum.post_id WHERE user.username LIKE ? OR forum.title LIKE ? OR forum.post LIKE ? OR forum.time LIKE ? GROUP BY forum_comments.post_id ORDER BY forum.time DESC'
+    search: 'SELECT forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid, COUNT(forum_comments.comment_id) AS comments FROM forum JOIN users ON forum.uid = users.uid LEFT JOIN forum_comments ON forum_comments.post_id = forum.post_id WHERE users.username LIKE ? OR forum.title LIKE ? OR forum.post LIKE ? OR forum.time LIKE ? GROUP BY forum.post_id, forum.title, forum.post, forum.time, users.username, users.uid ORDER BY forum.time DESC'
 };
 
 const getEditQuery = async () => {

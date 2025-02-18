@@ -75,23 +75,22 @@ const login = async (req,res) => {
                 return res.status(400).json({error: 'Érvénytelen jelszó!'});
             }
             const token = jwt.sign({ id: user.uid, role: user.role}, JWT_SECRET, { expiresIn: '1h' });
-            if(remember) {
-                console.log(token);
-                console.log(res.cookie('auth_token', token, {
-                    httpOnly: true,
-                    secure: false,
-                    sameSite: 'none',
-                    maxAge: 1000 * 60 * 60 * 24 * 31 * 12
-                }))
+            if(remember === true) {               
                 res.cookie('auth_token', token, {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'none',
                     maxAge: 1000 * 60 * 60 * 24 * 31 * 12
                 });
+                return res.status(200).json({ message: 'Sikeres bejelentkezés!'});
             }
-            else{
-                req.session.token = token;
+            else{         
+                res.cookie('auth_token', token, {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                });
+                return res.status(200).json({ message: 'Sikeres bejelentkezés sessionnel!', token});
             } 
         } catch(err) {
             return res.status(500).json({error: 'Hiba a mátrixban', details: err});
@@ -150,23 +149,16 @@ const logout = (req, res) => {
         secure: true,
         sameSite: 'none'
     });
-    req.session.destroy();
-    res.clearCookie('connect.sid');
     res.status(200).json({message: "Sikeres kijelentkezés"});
 };
 
 const validate =  (req, res) => {
-    const token = req.cookies.auth_token || req.session.token;
-    console.log(req.cookies);
-    console.log(req.session);
-    console.log(req.cookies.auth_token)
-    console.log(req.session.token)
-    console.log(token);
+    const token = req.cookies.auth_token;
     try {
         // Token érvényesítése
         const user = jwt.verify(token, JWT_SECRET);
-        console.log(user);
         res.json({ loggedIn: true });
+
     } catch (error) {
         res.json({ loggedIn: false });
     }

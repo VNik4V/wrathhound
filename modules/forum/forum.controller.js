@@ -262,7 +262,7 @@ const editComment = async (req,res) => {
 const searchPost = async (req, res) => {
     const {search} = req.params;
     const keres = `%${search}%`;
-
+	console.log(keres);
     try {
         const [result] = await db.query(sql.search, [keres,keres,keres,keres]);
         if(result.length === 0){
