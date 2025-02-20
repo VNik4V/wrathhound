@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: ['192.168.10.17', '192.168.10.16', '192.168.10.18', 'http://127.0.0.1:5500', 'https://vnik4v.github.io', 'https://fantastic-salamander-a725c3.netlify.app'],
+    origin: ['192.168.10.17', '192.168.10.16', '192.168.10.18', 'http://127.0.0.1:5500', 'https://vnik4v.github.io', 'https://wrathhound.netlify.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Engedélyezett HTTP metódusok
     allowedHeaders: ['Content-Type', 'Authorization'],
