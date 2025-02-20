@@ -25,6 +25,27 @@ const userprofile = async (req,res) => {
     */
 };
 
+const anyuserprofile = async (req,res) => {
+    const {uid} = req.params;
+    try {
+        const [result] = await db.query(sql.user, [uid]);
+        if(result.length === 0){
+            return res.status(404).json({error: "Felhasználó nem található"});
+        }
+        return res.status(200).json(result[0]);
+    } catch (error) {
+        return res.status(500).json({error: "Hiba a lekérdezésben"});
+    }
+    /*
+    db.query(sql.user, [id], async (err,result) => {
+        if(err){
+            return res.status(500).json({error: "Hiba a lekérdezésben"});
+        }
+        res.status(200).json(result);
+    });
+    */
+};
+
 const editprofile = async (req,res) => {
     const username = req.body.username || '';
     const psw = req.body.psw || '';
@@ -78,4 +99,4 @@ const editprofile = async (req,res) => {
     
 };
 
-module.exports = { userprofile, editprofile };
+module.exports = { userprofile, editprofile, anyuserprofile };
