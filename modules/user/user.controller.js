@@ -47,8 +47,8 @@ const anyuserprofile = async (req,res) => {
 };
 
 const editprofile = async (req,res) => {
-    const {username} = req.body || '';
-    const {psw} = req.body || '';
+    const username = req.body.username || '';
+    const psw = req.body.psw || '';
     const uid = req.user.id;
     const values = [];
     help.fields = [];
