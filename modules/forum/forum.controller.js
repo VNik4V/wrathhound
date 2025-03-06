@@ -124,7 +124,7 @@ const deletePost = async (req,res) => {
     const {post_id} = req.params;
     const {id} = req.user;
     try {
-        const [result] = await db.query(sql.deletepost, [post_id, id]);
+        const [result] = await db.query(sql.deletepost, [post_id, id, id]);
         if(result.affectedRows === 0){
             return res.status(404).json({error: 'A keresett bejegyzés nem található'});
         }
@@ -149,7 +149,7 @@ const deleteComment = async (req,res) => {
     const {comment_id} = req.params;
     const {id} = req.user;
     try {
-        const [result] = await db.query(sql.deletecomment, [comment_id, id]);
+        const [result] = await db.query(sql.deletecomment, [comment_id, id, id]);
         if(result.affectedRows === 0){
             return res.status(404).json({error: 'A keresett komment nem található'});
         }
