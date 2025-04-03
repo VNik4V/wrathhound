@@ -1,9 +1,8 @@
 # Wrath Hound
-A Wrath Hound egy 2D indie fejlesztésű kalandjáték, amely a régi klasszikusok hangulatát ötvözi egy friss és izgalmas élménnyel. A játékosokat egy sötét fantasy világba vezeti, ahol démonokkal és rejtett titkokkal teli helyszínek várják őket. A dinamikus harcrendszer és a lenyűgöző pixel art grafika egy felejthetetlen kalandot kínál. Fedezd fel a világot, harcolj szörnyekkel és gyűjts erősebb fegyvereket, miközben a kaland izgalmas kihívásokat tartogat.
+## A projektről
+    A Wrath Hound egy 2D indie fejlesztésű kalandjáték, amely a régi klasszikusok hangulatát ötvözi egy friss és izgalmas élménnyel. A játékosokat egy sötét fantasy világba vezeti, ahol démonokkal és rejtett titkokkal teli helyszínek várják őket. A dinamikus harcrendszer és a lenyűgöző pixel art grafika egy felejthetetlen kalandot kínál. Fedezd fel a világot, harcolj szörnyekkel és gyűjts erősebb fegyvereket, miközben a kaland izgalmas kihívásokat tartogat.
 ---
 ## Adatbázis
-[adatbázis](https://drawsql.app/teams/dszc-baross-2/diagrams/wrathhound)
-
 - users
     - uid
 	- username
@@ -43,6 +42,8 @@ A Wrath Hound egy 2D indie fejlesztésű kalandjáték, amely a régi klasszikus
 	- version
 
 ![kép az adatbáziskapcsolatokról](https://i.snipboard.io/apmj3q.jpg)
+
+[adatbázis](https://drawsql.app/teams/dszc-baross-2/diagrams/wrathhound)
 
 ---
 ## Backend
