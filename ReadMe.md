@@ -97,7 +97,33 @@ A backend feladata kommunikációs hidat létesíteni a frontend (játék és we
         - ReadMe.md
 
 2. Használt package-ek
-    - []
+    - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+    - [cookie-parser](https://www.npmjs.com/package/cookie-parser)
+    - [cors](https://www.npmjs.com/package/cors)
+
+````javascript
+"dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.4",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+````
+---
+
+
+
+---    
 
 ````javascript
 app.use('/game', express.static(path.join(__dirname, 'thegame')));
