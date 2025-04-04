@@ -8,18 +8,6 @@
 ## Készítette
 - Vörösmarti Mónika
 - GitHub: https://github.com/VNik4V/wrathhound
-
-## Fejlesztési környezet
-- **Node.js**
-- **MySQL**
-
-## Telepítés és futtatás
-```bash
-git clone https://github.com/VNik4V/wrathhound.git
-cd wrathhound
-npm install
-npm run dev
-```
 ---
 
 ## Adatbázis
@@ -65,6 +53,20 @@ npm run dev
 ## Backend
 
 A backend Node.js alapú, Express keretrendszerrel, és MySQL adatbázissal működik. Feladata kommunikációs hidat létesíteni a frontend (játék + weboldal) és az adatbázis között.
+
+### Fejlesztési környezet
+- **Node.js**
+- **MySQL**
+---
+
+### Telepítés és futtatás
+```bash
+git clone https://github.com/VNik4V/wrathhound.git
+cd wrathhound
+npm install
+npm run dev
+```
+---
 
 ### Mappa struktúra
 - Backend/
