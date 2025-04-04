@@ -4,7 +4,22 @@
 A Wrath Hound egy 2D indie fejlesztésű kalandjáték, amely a régi klasszikusok hangulatát ötvözi egy friss és izgalmas élménnyel. A játékosokat egy sötét fantasy világba vezeti, ahol démonokkal és rejtett titkokkal teli helyszínek várják őket. A dinamikus harcrendszer és a lenyűgöző pixel art grafika egy felejthetetlen kalandot kínál. Fedezd fel a világot, harcolj szörnyekkel és gyűjts erősebb fegyvereket, miközben a kaland izgalmas kihívásokat tartogat.
 
 ---
+
+## Készítette
+- Vörösmarti Mónika
+- GitHub: https://github.com/VNik4V/wrathhound
+
+## Telepítés és futtatás
+```bash
+git clone https://github.com/VNik4V/wrathhound.git
+cd wrathhound
+npm install
+npm run dev
+```
+---
+
 ## Adatbázis
+
 - users
     - uid
 	- username
@@ -40,15 +55,14 @@ A Wrath Hound egy 2D indie fejlesztésű kalandjáték, amely a régi klasszikus
 	- version
 
 ![kép az adatbáziskapcsolatokról](https://i.snipboard.io/hSX4QR.jpg)
-
-[adatbázis](https://drawsql.app/teams/dszc-baross-2/diagrams/wrathhound)
+>[adatbázis diagram](https://drawsql.app/teams/dszc-baross-2/diagrams/wrathhound)
 
 ---
 ## Backend
 
-A backend feladata kommunikációs hidat létesíteni a frontend (játék és weboldal) és az adatbázis között.
+A backend Node.js alapú, Express keretrendszerrel, és MySQL adatbázissal működik. Feladata kommunikációs hidat létesíteni a frontend (játék + weboldal) és az adatbázis között.
 
-### Rendezet mappa struktúra
+### Mappa struktúra
 - Backend/
     - node_modules/ 
         - ... -> *Használt csomagok fájljai*
@@ -130,7 +144,14 @@ A backend feladata kommunikációs hidat létesíteni a frontend (játék és we
   }
 ````
 >package.json
----    
+---  
+
+### Biztonság
+- **JWT** token alapú hitelesítés
+- Jelszavak **bcryptjs** segítségével vannak hashelve
+- Middleware szinten történik az authentikáció (**auth.middleware.js**)
+- A **.env** fájl tartalmaz minden érzékeny adatot – ne oszd meg publikusan!
+---
 
 ### Végpontok
 Az app.js -be meghívtuk az összes routes fájlt és mint egy közlekedési csomópont igazgatja a végpontokat.
@@ -288,3 +309,15 @@ app.use('/api/game', gameRoutes);
     app.use('/game', express.static(path.join(__dirname, 'thegame')));
     ```
     >app.js
+---
+### Tesztelés
+![postman teszt](https://i.snipboard.io/qY6Vg0.jpg)
+A projekt jelenleg manuálisan tesztelt és tesztelhető a **Postman** segítségével.
+
+---
+
+### Továbbfejlesztési lehetőség
+![eredeti terv](https://i.snipboard.io/UXaO2p.jpg)
+Az eredeti tervben emberek közti direkt üzenetek és admin által feltöltött hírek a játék fejlesztésével kapcsolatban is be volt tervezve.
+- SQL kiegészítése plusz táblákkal
+- Plusz végpontok írása (***/news*** + ***/messages***) 
