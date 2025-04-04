@@ -51,51 +51,51 @@ A backend feladata kommunikációs hidat létesíteni a frontend (játék és we
 ### Rendezet mappa struktúra
 - Backend/
     - node_modules/ 
-        - ... -> (Használt csomagok fájljai)
+        - ... -> *Használt csomagok fájljai*
     - thegame/ 
-        - WrathHound.exe -> (Játék .exe fájla)
+        - WrathHound.exe -> *Játék .exe fájla*
     - config/
-        - db.js -> (Adatbázis kapcsolat)
-         - config.js -> (Dotenv beállítások)
+        - db.js -> *Adatbázis kapcsolat*
+         - config.js -> *Dotenv beállítások*
     - modules/
         - auth/
-            - auth.model.js -> (SQL lekérdezések)
-            - auth.controller.js -> (Vezérlők)
-            - auth.routes.js -> (Útvonalak (regisztráció, bejelentkezés, kijelentkezés))
+            - auth.model.js -> *SQL lekérdezések*
+            - auth.controller.js -> *Vezérlők*
+            - auth.routes.js -> *Útvonalak (regisztráció, bejelentkezés, kijelentkezés)*
         - user/
-            - user.model.js -> (Felhasználói adatmodell (MySQL lekérdezések))
-            - user.controller.js -> (Felhasználókkal kapcsolatos vezérlő)
-            - user.routes.js -> (Felhasználói útvonalak)
+            - user.model.js -> *Felhasználói adatmodell (MySQL lekérdezések)*
+            - user.controller.js -> *Felhasználókkal kapcsolatos vezérlő*
+            - user.routes.js -> *Felhasználói útvonalak*
         - achievements/
-            - achievements.model.js -> (Eredmények adatmodell)
-            - achievements.controller.js -> (Eredmények vezérlője)
-            - achievements.routes.js -> (Eredmények útvonalai (pl. új eredmény, eredmények lekérdezése))
+            - achievements.model.js -> *Eredmények adatmodell*
+            - achievements.controller.js -> *Eredmények vezérlője*
+            - achievements.routes.js -> *Eredmények útvonalai (pl. új eredmény, eredmények lekérdezése)*
         - forum/
-            - forum.model.js -> (Fórum bejegyzések adatmodell)
-            - forum.controller.js -> (Fórum vezérlője (hozzáadás, listázás, törlés))
-            - forum.routes.js -> (Fórum útvonalai (pl. bejegyzések, kommentek))
+            - forum.model.js -> *Fórum bejegyzések adatmodell*
+            - forum.controller.js -> *Fórum vezérlője (hozzáadás, listázás, törlés)*
+            - forum.routes.js -> *Fórum útvonalai (pl. bejegyzések, kommentek)*
         - friends/
-            - friend.model.js -> (Barátlista adatmodell)
-            - friend.controller.js -> (Barátokkal kapcsolatos vezérlő)
-            - friend.routes.js -> (Barátlista útvonalak (pl. barát hozzáadása, barátlista lekérdezése))
+            - friend.model.js -> *Barátlista adatmodell*
+            - friend.controller.js -> *Barátokkal kapcsolatos vezérlő*
+            - friend.routes.js -> *Barátlista útvonalak (pl. barát hozzáadása, barátlista lekérdezése)*
         - game/
-            - game.model.js -> (Játék adatmodell)
-            - game.controller.js -> (Játékkal kapcsolatos vezérlő (pl. frissítések ellenőrzése))
-            - game.routes.js -> (Játék modul útvonalai)
+            - game.model.js -> *Játék adatmodell*
+            - game.controller.js -> *Játékkal kapcsolatos vezérlő (pl. frissítések ellenőrzése)*
+            - game.routes.js -> *Játék modul útvonalai*
     - middleware/
-        - multer.middleware.js -> (Fájl feltöltés)
-        - auth.middleware.js -> (Token autentikáció)
+        - multer.middleware.js -> *Fájl feltöltés*
+        - auth.middleware.js -> *Token autentikáció*
     - utils/
-        - helpers.js -> (Általános segédfüggvények, globális változók)
-        - validators.js -> (Validációs függvények (pl. adatbemenet ellenőrzés))
-    - app.js -> (Az alkalmazás belépési pontja (Express konfigurálás, middleware-ek betöltése))
-    - server.js -> (Szerver indítási fájl (pl. app.js meghívása és futtatása adott porton))
-    - .env -> (Környezeti változók (pl. adatbázis URL, API kulcsok))
-    - package.json -> (Használt csomagok és függőségek)
-    - package-lock.json -> (Függőségek)
-    - .gitignore -> (Nem nyomonkövetett fájlok vagy mappák)
-    - ReadMe.md -> (Dokumentáció)
-    - wrathhound.sql -> (Adatbázis)
+        - helpers.js -> *Általános segédfüggvények, globális változók*
+        - validators.js -> *Validációs függvények (pl. adatbemenet ellenőrzés)*
+    - app.js -> *Az alkalmazás belépési pontja (Express konfigurálás, middleware-ek betöltése)*
+    - server.js -> *Szerver indítási fájl (pl. app.js meghívása és futtatása adott porton)*
+    - .env -> *Környezeti változók (pl. adatbázis URL, API kulcsok)*
+    - package.json -> *Használt csomagok és függőségek*
+    - package-lock.json -> *Függőségek*
+    - .gitignore -> *Nem nyomonkövetett fájlok vagy mappák*
+    - ReadMe.md -> *Dokumentáció*
+    - wrathhound.sql -> *Adatbázis*
 
 ---
 
@@ -147,10 +147,18 @@ app.use('/api/game', gameRoutes);
 >app.js
 ---
 1. Auth végpontok
-    - /registration
+    - /registration  
+        >*regisztráció*
+
     - /login
+        >*bejelentkezés*
+
     - /logout
+        >*kijelentkezés*
+
     - /validate
+        >*bejelentkezés ellenőrzés, ha be van jelentkezve akkor igaz értéket add ha nincs akkor hamisat*
+
     ```javascript
     router.post('/registration', registration);
     router.post('/login', login);
@@ -160,18 +168,36 @@ app.use('/api/game', gameRoutes);
     >auth.routes.js
 2. User végpontok
     - /userprofile
+        >*felhasználó saját adatai*
+
+    - /userprofile/:uid
+        >*más felhasználó adatai* 
+
     - /editprofile
+        >*felhasználó adatainak szerkesztése (username, psw)*
+
     ```javascript
     router.get('/userprofile', authenticateToken, userprofile);
+    router.get('/userprofile/:uid', anyuserprofile);
     router.put('/editprofile', authenticateToken, editprofile);
     ```
     >user.routes.js
 3. Achievements végpontok
     - /userachievements
+        >*saját achievementek*
+
     - /userachievements/:uid
+        >*más felhasználó achievementjei*
+
     - /all
+        >*minden achievement*
+
     - /achievement/:aid
+        >*egy achievement*
+
     - /addachievement
+        >*achievement megszerzése*
+
     ```javascript
     router.get('/userachievements', authenticateToken, loggedinuserachievements);
     router.get('/userachievements/:uid', authenticateToken, userachievements);
@@ -182,14 +208,32 @@ app.use('/api/game', gameRoutes);
     >achievement.routes.js
 4. Forum végpontok
     - /newpost
+        >*új fórumposzt írása*
+
     - /allposts
+        >*minden fórumposzt*
+
     - /post/:id
+        >*egy fórumposzt*
+
     - /newcomment/:post_id
+        >*új komment írása*
+
     - /deletepost/:post_id
+        >*fórumposzt törlése*
+
     - /deletecomment/:comment_id
+        >*komment törlése*
+
     - /editpost/:post_id
+        >*fórumposzt szerkesztése*
+
     - /editcomment/:coment_id
+        >*komment szerkesztése*
+
     - /search/:search
+        >*keresés*
+
     ```javascript
     router.post('/newpost', authenticateToken, createPost);
     router.get('/allposts', allPost);
@@ -204,24 +248,42 @@ app.use('/api/game', gameRoutes);
     >forum.routes.js
 5. Friends végpontok
     - /addfriend/:uid
+        >*barátkérelem küldése és elfogadása*
+
     - /pending
+        >*beérkező barátkérelmek listája*
+
     - /all
+        >*saját barátok listája*
+
+    - /all/:uid
+        >*más barátainak listája*
+
     - /removefriend/:uid
+        >*barát törlése*
+
     ```javascript
     router.post('/addfriend/:uid', authenticateToken, addFriend);
     router.get('/pending', authenticateToken, pending);
     router.get('/all', authenticateToken, allFriends);
+    router.get('/all/:uid', someoneFriends);
     router.delete('/removefriend/:uid', authenticateToken, removeFriend);
     ```
     >friends.routes.js
 6. Game végpontok
     - /upload
+
+        >*játék feltöltése*
+
     ```javascript
     router.put('/upload', authenticateToken, verifyAdmin, upload.single('game'), uploadGame);
     ```
     >game.routes.js
 7. Fájl letöltéshez kapcsolódó végpont
     - /game/WrathHound.exe
+
+        >*játék letöltése*
+
     ```javascript
     app.use('/game', express.static(path.join(__dirname, 'thegame')));
     ```
