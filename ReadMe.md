@@ -325,6 +325,7 @@ A projekt jelenleg manuálisan tesztelt és tesztelhető a **Postman** segítsé
 
 ### Továbbfejlesztési lehetőség
 ![eredeti terv](https://i.snipboard.io/UXaO2p.jpg)
+[link](https://miro.com/welcomeonboard/bHdVenM2VHA4SFppOEZkU00yc2E1a1MvaDJwem5ZSldMRk9UK29OOVZFVWtTUTRQWmZtUjd6NUFFZ1Uzd28zRHBrcDQySWVLZU5XVkdqWkZSUHA5djhwOWdPa2FIaUtMQWpkU0IzMjYrelhzT0ZkTlBWVHhUUjliOUV3T2pkdjJhWWluRVAxeXRuUUgwWDl3Mk1qRGVRPT0hdjE=?share_link_id=452513989302)
 Az eredeti tervben emberek közti direkt üzenetek és admin által feltöltött hírek a játék fejlesztésével kapcsolatban is be volt tervezve.
 - SQL kiegészítése plusz táblákkal
 - Plusz végpontok írása (***/news*** + ***/messages***) 
