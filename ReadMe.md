@@ -10,6 +10,11 @@
 - GitHub: https://github.com/VNik4V/wrathhound
 ---
 
+### Fejlesztési környezet
+- **Node.js**
+- **MySQL**
+---
+
 ## Adatbázis
 
 - users
@@ -54,10 +59,6 @@
 
 A backend Node.js alapú, Express keretrendszerrel, és MySQL adatbázissal működik. Feladata kommunikációs hidat létesíteni a frontend (játék + weboldal) és az adatbázis között.
 
-### Fejlesztési környezet
-- **Node.js**
-- **MySQL**
----
 
 ### Telepítés és futtatás
 ```bash
