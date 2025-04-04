@@ -6,7 +6,7 @@
 ---
 
 ## Készítette
-- Vörösmarti Mónika
+- Vörösmarti Mónika (Backend, SQL adatbázis)
 - GitHub: https://github.com/VNik4V/wrathhound
 ---
 
