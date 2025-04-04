@@ -7,7 +7,7 @@
 
 ## Készítette
 - Vörösmarti Mónika (Backend, SQL adatbázis)
-- GitHub: https://github.com/VNik4V/wrathhound
+- [GitHub repo](https://github.com/VNik4V/wrathhound)
 ---
 
 ### Fejlesztési környezet
