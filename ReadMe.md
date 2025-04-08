@@ -338,3 +338,16 @@ Az eredeti tervben emberek közti direkt üzenetek és admin által feltöltött
 
 - [Github repo](https://github.com/VNik4V/wrathhoundfrontend)
 - [Frontend](https://wrathhound.netlify.app)
+
+## Használt eszközök
+- [VS code](https://code.visualstudio.com)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [NPM](https://www.npmjs.com)
+- [Postman](https://www.postman.com)
+- [DrawSQL](https://drawsql.app)
+- [W3Schools](https://www.w3schools.com)
+- [StackOverflow](https://stackoverflow.com/questions)
+- [ChatGPT](https://chatgpt.com)
+- [Tabnine](https://www.tabnine.com)
+- [GitHub](https://github.com/)
+- [Google Drive](https://workspace.google.com/products/drive/)
