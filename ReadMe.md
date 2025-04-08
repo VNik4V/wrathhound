@@ -320,7 +320,10 @@ app.use('/api/game', gameRoutes);
 ---
 ### Tesztelés
 ![postman teszt](https://i.snipboard.io/qY6Vg0.jpg)
+>[teszteredmények](https://documenter.getpostman.com/view/38557644/2sB2cVfhk5)
+
 A projekt jelenleg manuálisan tesztelt és tesztelhető a **Postman** segítségével.
+
 
 ---
 
