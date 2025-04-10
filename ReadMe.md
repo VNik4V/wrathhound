@@ -271,7 +271,7 @@ app.use('/api/game', gameRoutes);
 6. Game végpontok
     | Művelet            | HTTP                                               | Végpont     | Leírás                   |
     |--------------------|----------------------------------------------------|-------------|--------------------------|
-    | Játék feltöltése   | ![POST](https://img.shields.io/badge/-POST-yellow) | `/upload`   | Új játék verzió feltöltése      |
+    | Játék feltöltése   | ![POST](https://img.shields.io/badge/-PUT-blue) | `/upload`   | Új játék verzió feltöltése      |
 
 
     ```javascript
