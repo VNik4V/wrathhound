@@ -322,3 +322,4 @@ Az eredeti tervben emberek közti direkt üzenetek és admin által feltöltött
 - [Tabnine](https://www.tabnine.com)
 - [GitHub](https://github.com/)
 - [Google Drive](https://workspace.google.com/products/drive/)
+- [Pterodactyl](https://pterodactyl.io)
