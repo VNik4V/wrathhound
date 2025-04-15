@@ -323,3 +323,4 @@ Az eredeti tervben emberek közti direkt üzenetek és admin által feltöltött
 - [GitHub](https://github.com/)
 - [Google Drive](https://workspace.google.com/products/drive/)
 - [Pterodactyl](https://pterodactyl.io)
+- [PhpMyAdmin](https://www.phpmyadmin.net)
